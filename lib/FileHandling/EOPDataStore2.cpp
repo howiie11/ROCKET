@@ -359,8 +359,9 @@ namespace gpstk
             // However, the leap second data is not available here.
             // Therefore, the use of the EOP Data with both EOP and Leap
             // Second is proposed, such as the STK EOP Data.
-            double dut1[half*2];
-
+			
+            //double dut1[half2];
+			double* dut1=new double[half * 2];
             for(int i=0; i<half*2; ++i)
             {
                 dut1[i] = (datas[2])[i];
@@ -396,6 +397,7 @@ namespace gpstk
                 }
             }
 
+			delete dut1;
 
             // implemet Lagrange interplation
             vector<double> target(N,0.0);

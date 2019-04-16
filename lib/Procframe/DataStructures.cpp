@@ -3177,7 +3177,7 @@ in matrix and number of types do not match") );
                sdmIter->second.removeSatID(sat);
            }
        }
-
+			return *this;
    }  // End of method 'gnssDataMap::removeSatID()'
 
 

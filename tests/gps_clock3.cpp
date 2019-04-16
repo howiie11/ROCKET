@@ -114,29 +114,33 @@ int main(int argc, char* argv[])
     confReader.setFallback2Default(true);
 
 
-    // initial time
-    string time;
-    try
-    {
-        time = confReader.getValue("initialTime", "DEFAULT");
-    }
-    catch(...)
-    {
-        cerr << "initial time get error." << endl;
-        exit(-1);
-    }
+	YDSTime gps0(confReader.getValueAsInt("year"),
+		confReader.getValueAsInt("dayOfYear"),
+		confReader.getValueAsDouble("secOfDay"), TimeSystem::GPS);
 
-    int year = asInt( time.substr( 0,4) );
-    int mon  = asInt( time.substr( 5,2) );
-    int day  = asInt( time.substr( 8,2) );
-    int hour = asInt( time.substr(11,2) );
-    int min  = asInt( time.substr(14,2) );
-    int sec  = asDouble( time.substr(17,2) );
-
-    CivilTime civilTime(year,mon,day,hour,min,sec, TimeSystem::GPS);
-    CommonTime gps0( civilTime.convertToCommonTime() );
-
-//    cout << "initial time: " << civilTime << endl;
+//    // initial time
+//    string time;
+//    try
+//    {
+//        time = confReader.getValue("initialTime", "DEFAULT");
+//    }
+//    catch(...)
+//    {
+//        cerr << "initial time get error." << endl;
+//        exit(-1);
+//    }
+//
+//    int year = asInt( time.substr( 0,4) );
+//    int mon  = asInt( time.substr( 5,2) );
+//    int day  = asInt( time.substr( 8,2) );
+//    int hour = asInt( time.substr(11,2) );
+//    int min  = asInt( time.substr(14,2) );
+//    int sec  = asDouble( time.substr(17,2) );
+//
+//    CivilTime civilTime(year,mon,day,hour,min,sec, TimeSystem::GPS);
+//    CommonTime gps0( civilTime.convertToCommonTime() );
+//
+////    cout << "initial time: " << civilTime << endl;
 
 
     // eop file
